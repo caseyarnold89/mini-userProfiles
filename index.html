@@ -5,13 +5,15 @@
         
     </head>
     <body ng-controller="mainController">
+        <button ng-click="next()">Next Page</button>
+        <button ng-click="previous()">Previous Page</button>
         
         <div ng-repeat="user in users">
             User ID: {{user.id}} <br>
             User Name: {{user.first_name}} {{user.last_name}}
             <br>
             <br>
-            
+            <img src="{{user.avatar}}" alt="">
         </div>
         
         

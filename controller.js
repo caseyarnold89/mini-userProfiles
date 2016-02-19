@@ -1,10 +1,23 @@
 angular.module("userProfiles").controller("mainController", function($scope, mainService) {
     
+    $scope.currentPage = 1;
+    
     $scope.getUsers = function () {
-        $scope.users = mainService.getUsers();
-        return $scope.users;
+        var promise = mainService.getUsers($scope.currentPage);
+        promise.then(function(response) {
+            $scope.users = response;
+        })
     }
     
-    $scope.users = $scope.getUsers();
+    $scope.getUsers();
     
-});
+    $scope.next = function(){
+        $scope.currentPage++;
+        $scope.getUsers();
+    }
+    
+    $scope.previous = function(){
+        $scope.currentPage--;
+        $scope.getUsers();
+    }
+})
